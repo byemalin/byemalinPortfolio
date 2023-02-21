@@ -1,0 +1,152 @@
+/* UNIVERSAL STYLES */
+
+/* *{
+    border: solid red 0.5px;
+} */
+
+html{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+body{
+    margin: 0;
+
+    background-color: #F4F7FA;
+}
+
+/* FONTS & TYPOGRAPHY */
+
+/* font import */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+h3{
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+    font-weight: 500;
+}
+
+p{
+    font-size: 1.5rem;
+    line-height: 140%;
+    font-weight: 400;
+    color: #3C3D3E;
+}
+
+
+
+
+/* LANDING PAGE */
+
+#landingPageGIFcontainer{
+    width: 100%;
+    height:100%;
+}
+
+.GIF{
+    width: 100%;
+}
+
+/* MAIN HEADER */
+
+.mainHeader{
+    display: flex;
+    justify-content: space-between;
+
+   
+
+    /* box-sizing: border-box; */
+    position: absolute;
+
+    width: 90vw;
+
+    margin: 3vw 5vw;
+    
+}
+
+.headerLogoContainer{
+    width: 12rem;
+    height: auto;
+}
+.headerLogoContainer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+nav ul{
+    display: flex;
+    padding: 0;    
+}
+nav li{
+    list-style: none;
+    padding:0 1rem;
+}
+
+nav li a{
+    text-decoration: none;
+    color: black;
+}
+
+
+/* HERO */
+
+.hero{
+    max-height: 44rem;
+    width: 100%;
+
+    display:flex;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background-image: url('../assets/img/blurryPortrait.jpeg');
+    background-position: center;
+    background-size: cover;
+}
+
+.hero .spacer{
+    height: 15%;
+}
+
+#heroImageContainer{
+    width: 85%;
+    height: auto;
+}
+
+#heroImageContainer img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    animation: slowRotate 20s linear 700ms infinite;
+    animation-play-state: paused;
+}
+
+#heroImageContainer img:hover {
+    animation-play-state: running;
+  }
+
+@keyframes slowRotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* SPLIT SECTION CLASS */
+
+.splitSection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 5vw;
+    padding: 3.5vw 0;
+}
+
+.splitSection .right{
+    max-width: 60%;
+}
