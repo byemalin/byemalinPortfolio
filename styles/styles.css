@@ -1,8 +1,8 @@
 /* UNIVERSAL STYLES */
 
-/* *{
+*{
     border: solid red 0.5px;
-} */
+}
 
 html{
     font-family: 'Roboto', sans-serif;
@@ -15,11 +15,32 @@ body{
     background-color: #F4F7FA;
 }
 
+.cta{
+    /* padding: 0.8rem 2.6rem; */
+
+    width: 10.5rem;
+    height: 3.8rem;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    border-radius: 170px;
+
+    background-color: #F4F7FA;
+    border: 1px solid #F4F7FA;
+}
+
 /* FONTS & TYPOGRAPHY */
 
 /* font import */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
+h2{
+    font-size: 3.3rem;
+    font-weight: 400;
+    line-height: 3.8rem;
+    font-style: normal;
+}
 h3{
     font-size: 2.2rem;
     line-height: 2.5rem;
@@ -33,6 +54,13 @@ p{
     color: #3C3D3E;
 }
 
+.smallText{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+    color: #3C3D3E;
+}
+
 
 
 
@@ -40,12 +68,19 @@ p{
 
 #landingPageGIFcontainer{
     width: 100%;
-    height:100%;
+    height:100vh;
+
+    display: flex;
+    align-items: center;
+    background-color: white;
 }
 
 .GIF{
     width: 100%;
 }
+
+
+
 
 /* MAIN HEADER */
 
@@ -56,7 +91,7 @@ p{
    
 
     /* box-sizing: border-box; */
-    position: absolute;
+    position: relative;
 
     width: 90vw;
 
@@ -67,11 +102,13 @@ p{
 .headerLogoContainer{
     width: 12rem;
     height: auto;
+
+    
 }
-.headerLogoContainer img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+
+.headerLogoContainer svg path:hover{
+    fill:red;
+    transition: all 500ms;
 }
 
 
@@ -86,8 +123,20 @@ nav li{
 
 nav li a{
     text-decoration: none;
+}
+
+header nav li a{
     color: black;
 }
+
+header nav li a:hover{
+    color: red;
+
+    transition: color 400ms;
+}
+
+
+
 
 
 /* HERO */
@@ -136,6 +185,8 @@ nav li a{
     }
 }
 
+
+
 /* SPLIT SECTION CLASS */
 
 .splitSection{
@@ -147,6 +198,193 @@ nav li a{
     padding: 3.5vw 0;
 }
 
+#alignFlexStart{
+    align-items: flex-start;
+}
+
 .splitSection .right{
-    max-width: 60%;
+    width: 65%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.splitSection .left{
+    width:35%;
+    display: flex;
+}
+
+.splitSection a{
+    text-decoration: none;
+    color:#0B0C0E;
+}
+
+
+/* HOME PAGE */
+
+#homePageHeader{
+    position: absolute;
+}
+
+.recentProject{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 2rem;
+
+    border-bottom: 1px solid #C7D0D9;
+}
+
+.recentProject h2{
+    margin:0;
+}
+
+
+.openIcon{
+    width:4.7rem;
+    height: 4.7rem;
+    border: 1px solid #3C3D3E;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 1s;
+}
+.openIcon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.openIcon:hover,
+.openIcon svg path:hover{
+    background-color: #3C3D3E;
+    fill: #F4F7FA;
+}
+
+.projectImageContainer{
+    width: 250px;
+    height: 180px;
+
+    padding:1rem;
+    background-color: #c7d0d9d0;
+
+    position: absolute;
+    display: none;
+    align-items: center;
+
+    box-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius:0.1rem;
+
+
+
+}
+
+.projectImageContainer img{
+    width:100%;
+    display: block;
+
+}
+
+
+
+/* ABOUT PAGE */
+
+.left .imageContainer{
+    width:343px;
+    height: 685px;
+}
+
+.left .imageContainer img{
+    max-width: 100%;
+    height: auto;
+}
+
+.about .left{
+    justify-content: center;
+}
+
+.skills{
+    width: 90vw;
+    margin: 0 5vw;
+}
+
+.skillIcons{
+    height: 5.6rem;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+.skillIcons img{
+    height: 100%;
+}
+
+
+/* .animationTest{
+    background-color: aqua;
+} */
+canvas {
+    max-width: 100%;
+    /* position: fixed;
+    left: 50%;
+    top: 50%;
+    max-height: 100vh;
+    max-width: 100vw;
+    transform: translate(-50%, -50%); */
+}
+
+
+
+
+/* FOOTER */
+
+footer{
+    /* width: 100%; */
+    padding: 5vw;
+    padding-bottom: 0;
+    background-color: #0B0C0E;
+    color: #F4F7FA;
+
+}
+
+.footerMain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 6vw;
+}
+
+footer h2{
+    margin: 1rem 0;
+}
+
+.profileImageContainer{
+    width:4.4rem;
+    height:4.4rem;
+    border-radius: 50%;
+
+    overflow: hidden;
+    margin-right:0.5rem;
+}
+
+.profileImageContainer img{
+    max-width: 100%;
+    height: auto;
+}
+
+.inlineTextIMG{
+    display: flex;
+    align-items: center;
+}
+
+.footerLinks{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerLinks p,
+footer nav li a{
+    color: #C7D0D9;
 }
