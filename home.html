@@ -11,6 +11,7 @@
 
     <!-- Script tag with a defer element: -->
     <script src="./scripts/projectHover.js" defer></script>
+    <script src="./scripts/popupMenu.js" defer></script>
 </head>
 
 <body>
@@ -38,6 +39,40 @@
                 <div class="spacer"></div>
                 <img alt='An abstract line drawing' src="./assets/img/lineDrawing.png">
             </div>
+
+            <div id="greetingContainer">
+                <div id="menuGreeting">
+                    <h3>&#128075;</h3>
+                    <h3>Hi I'm Malin</h3>
+                </div>
+            </div>
+
+            <div class="popupMenuContainer">
+                <div class="popupMenu">
+                    <div class="popupContent">
+                        <nav id="columnNav">
+                            <ul>
+                                <li><a href="#"><h2>Home</h2></a></li>
+                                <li><a href="#"><h2>About</h2></a></li>
+                                <li><a href="#"><h2>Contact</h2></a></li>
+                            </ul>
+                        </nav>
+
+                        <nav>
+                            <ul>
+                                <li><a href="#">Linkedin</a></li>
+                                <li><a href="#">Instagram</a></li>
+                                <li><a href="#">Github</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div>
+                        <div class="closeIcon"></div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <section class="splitSection">
@@ -51,25 +86,27 @@
 
         <section class="splitSection" id="alignFlexStart">
             <div class="left">
-                    <a href="#"><h3>Recent Work</h3></a>
+                    <a href="#recentWork"><h3>Recent Work</h3></a>
             </div>
-            <div class="right">
+            <div class="right" id="recentWork">
 
-                <div class="recentProject" id="project1">
-                    <div>
-                        <h2>Drawing Tool</h2>
-                        <p class="smallText">Software Development - UI Design - Web Design</p>
-                    </div>
-                    <div class="openIcon">
-                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.83007 0.457528V3.11625L12.3612 3.12568L0.88726 14.5997L2.77288 16.4853L14.2469 5.0113L14.2563 15.5425H16.915V0.457528H1.83007Z" fill="#3C3D3E"/>
-                        </svg>
-                    </div>
+                <a href="#">
+                    <div class="recentProject" id="project1">
+                        <div>
+                            <h2>Drawing Tool</h2>
+                            <p class="smallText">Software Development - UI Design - Web Design</p>
+                        </div>
+                        <div class="openIcon">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.83007 0.457528V3.11625L12.3612 3.12568L0.88726 14.5997L2.77288 16.4853L14.2469 5.0113L14.2563 15.5425H16.915V0.457528H1.83007Z" fill="#3C3D3E"/>
+                            </svg>
+                        </div>
 
-                    <div class="projectImageContainer" id="project1Screenshot">
-                        <img alt="Screenshot of Drawing Tool" src="./assets/img/drawingToolSS.png"> 
+                        <div class="projectImageContainer" id="project1Screenshot">
+                            <img alt="Screenshot of Drawing Tool" src="./assets/img/drawingToolSS.png"> 
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="recentProject" id="project2">
                     <div>

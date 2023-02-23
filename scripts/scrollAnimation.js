@@ -2,6 +2,7 @@ const html = document.documentElement;
 const canvas = document.getElementById("animation-scrolling");
 const context = canvas.getContext("2d");
 
+
 const frameCount = 148;
 const currentFrame = index => (
     `../assets/img/gifs/oblationFrames/${index.toString().padStart(3, '0')}.png`
@@ -24,7 +25,7 @@ img.onload=function(){
 
 const updateImage = index => {
   img.src = currentFrame(index);
-  context.drawImage(img, 0, 0);
+  context.drawImage(img, 0, 0, 342, 684);
 }
 
 window.addEventListener('scroll', () => {  
