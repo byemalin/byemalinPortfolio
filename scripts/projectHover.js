@@ -7,7 +7,7 @@ function projectHover(){
         let openIcon = currentProject.querySelector('.openIcon');
         let openArrow = openIcon.querySelector('path');
 
-        console.log(openArrow);
+
 
         currentProject.addEventListener('mouseover', ScreenshotDisplay);
         currentProject.addEventListener('mouseout', ScreenshotRemove);

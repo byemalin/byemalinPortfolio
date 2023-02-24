@@ -73,6 +73,15 @@ nav ul li a:hover{
     color:red;
 }
 
+button:hover{
+    cursor: pointer;
+    background-color: #3C3D3E;
+}
+
+button{
+    transition: all 500ms;
+}
+
 
 
 .profileImageContainer{
@@ -274,7 +283,7 @@ header nav li a{
     top: 20rem;
     right:0px;
 
-    transition: all 400ms ease-in 500ms;
+    transition: all 400ms ease-in 200ms;
 }
 
 #greetingContainer:hover{
@@ -308,7 +317,7 @@ header nav li a{
     overflow: hidden;
     right:0;
 
-    transition: width 750ms ease-in;
+    transition: width 750ms ease-in 300ms;
 }
 
 
@@ -346,6 +355,12 @@ header nav li a{
 
     background-color: #F4F7FA;
     border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 500ms;
 }
 
 
