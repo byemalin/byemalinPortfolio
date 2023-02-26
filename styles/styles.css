@@ -1,8 +1,8 @@
 /* UNIVERSAL STYLES */
 
-*{
+/* *{
     border: solid red 0.5px;
-}
+} */
 
 html{
     font-family: 'Roboto', sans-serif;
@@ -379,6 +379,10 @@ header nav li a{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
+    user-select: none;
+
+    cursor: pointer;
 }
 
 
@@ -448,7 +452,7 @@ header nav li a{
 
 .projectImageContainer{
     width: 250px;
-    height: 180px;
+    height: auto;
 
     padding:1rem;
     background-color: #c7d0d9d0;
@@ -457,7 +461,7 @@ header nav li a{
     display: none;
     align-items: center;
 
-    box-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
     border-radius:0.1rem;
 }
 
@@ -692,9 +696,11 @@ footer nav li a{
 /* RESPONSIVENESS */
 
 /* Tablet and smaller: */
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1020px){
     
-    /* HEADER */
+    /* COMMON COMPONENTS: */
+
+    /* Main Header */
     header nav{
         display: none;
     }
@@ -702,7 +708,6 @@ footer nav li a{
     .burgerContainer{
         display: block;
     }
-
 
     /* Popup */
     #greetingContainer{
@@ -715,7 +720,7 @@ footer nav li a{
         justify-content: space-around;
     }
 
-    /* FOOTER */
+    /* Footer */
 
     .footerMain{
         flex-direction: column;
@@ -727,14 +732,59 @@ footer nav li a{
         flex-direction: column;;
     }
 
-    
 
+    /* Split section class */
+
+    .splitSection{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .splitSection .right{
+        width: 100%;
+    }
+    .splitSection .left{
+        width: 100%;
+    }
+
+    
+    /* HOME PAGE */
+
+    .projectImageContainer{
+        display: block;
+        position: relative;
+
+        width: 70vw;
+
+        margin-bottom: 1rem;
+
+    }
+
+
+    .recentProject{
+        flex-direction: column;
+
+        text-align: center;
+    }
+    .openIcon{
+        display: none;
+    }
+
+    
 
 }
 
+
+
 /* Mobile: */
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 767px){
+
+    /* COMMON COMPONENTS: */
+
+    p{
+        font-size: 1.2rem;
+    }
 
     /* HEADER */
 
@@ -742,10 +792,20 @@ footer nav li a{
         width: 30vw;
     }
 
+    /* Popup */
+    .closeIcon{
+        width: 15vw;
+        height: 15vw;
+    }
+
     /* FOOTER */
 
     .footerLinks nav ul{
         flex-direction: column;
     }
+
+
+    /* HOME PAGE */
+    
 
 }
