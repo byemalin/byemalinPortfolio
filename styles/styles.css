@@ -112,9 +112,9 @@ button{
     height: auto;
 }
 
-.headerLogoContainer svg path:hover{
-    fill:red;    
-}
+/* .headerLogoContainer svg path:hover{
+    fill:red;  
+} */
 
 .headerLogoContainer svg path{
     transition: all 500ms;
@@ -494,6 +494,10 @@ header nav li a{
 
 /* ABOUT PAGE */
 
+#aboutIntro2{
+    display: none;
+}
+
 canvas {
     max-width: 100%;
 }
@@ -529,6 +533,7 @@ canvas {
 }
 .skillIcons img{
     height: 100%;
+    margin: 1rem 0;
 }
 
 
@@ -757,13 +762,9 @@ footer nav li a{
         width: 70vw;
 
         margin-bottom: 1rem;
-
     }
-
-
     .recentProject{
         flex-direction: column;
-
         text-align: center;
     }
     .openIcon{
@@ -771,6 +772,16 @@ footer nav li a{
     }
 
     
+    /* ABOUT PAGE */
+
+    #aboutIntro1{
+        display: none;
+    }
+
+    #aboutIntro2{
+        display: block;
+    }
+
 
 }
 

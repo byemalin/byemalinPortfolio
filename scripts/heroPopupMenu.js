@@ -38,3 +38,6 @@ function iconOut(){
         closeLines[i].style.stroke = '#3C3D3E';
     }
 }
+
+
+
