@@ -2,6 +2,8 @@ let greeting = document.getElementById('greetingContainer');
 let popup = document.querySelector('.popupMenuContainer');
 let closeIcon = document.querySelector('.closeIcon');
 
+
+
 greeting.onclick = displayPopup;
 closeIcon.onclick = hidePopup;
 
@@ -15,7 +17,7 @@ function hidePopup(){
 
 
 let closeLines = closeIcon.getElementsByTagName('line');
-console.log(closeLines);
+
 
 closeIcon.addEventListener('mouseover', iconHover);
 closeIcon.addEventListener('mouseout', iconOut);

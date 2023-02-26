@@ -11,9 +11,13 @@
 
     <!-- Script tag with a defer element: -->
     <script src="./scripts/scrollAnimation.js" defer></script>
+    <script src="./scripts/responsiveMenu.js" defer></script>
 </head>
 
+
+
 <body>
+
     <header class="mainHeader">
         <a href="./home.html">
             <div class="headerLogoContainer">
@@ -28,7 +32,48 @@
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
+        <!-- Responsive Hamburger: -->
+        <div class="burgerContainer">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" y1="31.5" x2="60" y2="31.5" stroke="#F4F7FA" stroke-width="2"/>
+                <path d="M20 47.5H60" stroke="#F4F7FA" stroke-width="2"/>
+            </svg>                
+        </div>
     </header>
+
+    <!-- Popup Menu -->
+    <section class="popupMenuContainer">
+        <div class="popupMenu">
+            <div class="popupContent">
+                <nav id="columnNav">
+                    <ul>
+                        <li><a href="./home.html"><h2>Home</h2></a></li>
+                        <li><a href="#"><h2>About</h2></a></li>
+                        <li><a href="./contact.html"><h2>Contact</h2></a></li>
+                    </ul>
+                </nav>
+    
+                <nav>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/malin-mabika/" target="_blank">Linkedin</a></li>
+                        <li><a href="https://www.instagram.com/byemalin/" target="_blank">Instagram</a></li>
+                        <li><a href="https://github.com/malin888" target="_blank">Github</a></li>
+                    </ul>
+                </nav>
+            </div>
+    
+            <div>
+                <div class="closeIcon">
+                    <svg width="57" height="58" viewBox="0 0 57 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="13.4345" y1="42.4345" x2="41.7188" y2="14.1502" stroke="#0B0C0E" stroke-width="2"/>
+                        <line x1="41.7197" y1="43.8487" x2="13.4354" y2="15.5644" stroke="#0B0C0E" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <main class="about">
         <section class="splitSection">

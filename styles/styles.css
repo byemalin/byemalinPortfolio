@@ -1,8 +1,8 @@
 /* UNIVERSAL STYLES */
 
-/* *{
+*{
     border: solid red 0.5px;
-} */
+}
 
 html{
     font-family: 'Roboto', sans-serif;
@@ -61,6 +61,8 @@ p{
     color: #3C3D3E;
 }
 
+/* common components */
+
 a:hover{
     color: red;
 }
@@ -82,8 +84,6 @@ button{
     transition: all 500ms;
 }
 
-
-
 .profileImageContainer{
     border-radius: 50%;
     overflow: hidden;
@@ -96,41 +96,15 @@ button{
 
 
 
-
-
-/* LANDING PAGE */
-
-#landingPageGIFcontainer{
-    width: 100%;
-    height:100vh;
-
-    display: flex;
-    align-items: center;
-    background-color: white;
-}
-
-.GIF{
-    width: 100%;
-}
-
-
-
-
 /* MAIN HEADER */
 
 .mainHeader{
     display: flex;
     justify-content: space-between;
-
-   
-
-    /* box-sizing: border-box; */
+    align-items: center;
     position: relative;
-
     width: 90vw;
-
     margin: 3vw 5vw;
-    
 }
 
 .headerLogoContainer{
@@ -145,7 +119,6 @@ button{
 .headerLogoContainer svg path{
     transition: all 500ms;
 }
-
 
 nav ul{
     display: flex;
@@ -163,6 +136,91 @@ nav li a{
 header nav li a{
     color: black;
 }
+
+
+
+
+
+/* Popup Menu: */
+
+.burgerContainer{
+    width:4.4rem;
+    height:4.4rem;
+
+    background-color: #0B0C0E;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 500ms;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+    display: none;
+}
+
+.popupMenu{
+    
+    width:50vw;
+    height:44rem;
+
+    display: flex;
+    justify-content: space-between;
+    padding:5vw;
+
+    box-sizing: border-box;
+}
+
+.popupMenuContainer{
+    background-color: black;
+    width:0px;
+    position:absolute;
+    overflow: hidden;
+    right:0;
+    top:0;
+    transition: width 750ms ease-in 300ms;
+
+    z-index: 1;
+}
+
+
+.popupContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#columnNav ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#columnNav h2{
+    margin: 1rem;
+    transition: color 500ms;
+}
+
+.popupMenu a{
+    color:white;
+}
+
+.closeIcon{
+    width:4.4rem;
+    height:4.4rem;
+
+    background-color: #F4F7FA;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 500ms;
+}
+
 
 
 
@@ -201,13 +259,65 @@ header nav li a{
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* LANDING PAGE */
+
+#landingPageGIFcontainer{
+    width: 100%;
+    height:100vh;
+
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.GIF{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* HOME PAGE */
 
 #homePageHeader{
     position: absolute;
 }
 
-/* hero */
+/* Hero */
 
 .hero{
     max-height: 44rem;
@@ -254,6 +364,9 @@ header nav li a{
     }
 }
 
+
+/* Popup */
+
 #menuGreeting{
     color: white;
     background-color: black;
@@ -266,9 +379,6 @@ header nav li a{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
-    /* position: absolute; */
-    
 }
 
 
@@ -288,79 +398,6 @@ header nav li a{
 
 #greetingContainer:hover{
     width: 320px; 
-}
-
-
-.popupMenu{
-    background-color: black;
-
-    width:50vw;
-    height:44rem;
-
-    /* position:absolute; */
-    /* right:-49vw; */
-
-    display: flex;
-    justify-content: space-between;
-    padding:5vw;
-
-    box-sizing: border-box;
-}
-
-/* .popupMenu:hover{
-    right:0;
-} */
-
-.popupMenuContainer{
-    width:0px;
-    position:absolute;
-    overflow: hidden;
-    right:0;
-
-    transition: width 750ms ease-in 300ms;
-}
-
-
-.popupContent{
-    display: flex;
-
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#columnNav ul{
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-evenly;
-}
-
-#columnNav h2{
-    margin: 1rem;
-    transition: color 500ms;
-}
-
-#columnNav h2:hover{
-    color: red;
-}
-
-.popupMenu a{
-    color:white;
-}
-
-
-.closeIcon{
-    width:4.4rem;
-    height:4.4rem;
-
-    background-color: #F4F7FA;
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: all 500ms;
 }
 
 
@@ -434,6 +471,23 @@ header nav li a{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ABOUT PAGE */
 
 canvas {
@@ -472,6 +526,28 @@ canvas {
 .skillIcons img{
     height: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -529,10 +605,31 @@ address{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* FOOTER */
 
 footer{
-    /* width: 100%; */
     padding: 5vw;
     padding-bottom: 0;
     background-color: #0B0C0E;
@@ -566,9 +663,89 @@ footer .profileImageContainer{
 .footerLinks{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .footerLinks p,
 footer nav li a{
     color: #C7D0D9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* RESPONSIVENESS */
+
+/* Tablet and smaller: */
+@media only screen and (max-width: 1024px){
+    
+    /* HEADER */
+    header nav{
+        display: none;
+    }
+
+    .burgerContainer{
+        display: block;
+    }
+
+
+    /* Popup */
+    #greetingContainer{
+        display: none;
+    }
+
+    .popupMenu{
+        width: 100vw;
+        height: 100vh;
+        justify-content: space-around;
+    }
+
+    /* FOOTER */
+
+    .footerMain{
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .inlineTextIMG{
+        flex-direction: column;;
+    }
+
+    
+
+
+}
+
+/* Mobile: */
+
+@media only screen and (max-width: 768px){
+
+    /* HEADER */
+
+    .headerLogoContainer{
+        width: 30vw;
+    }
+
+    /* FOOTER */
+
+    .footerLinks nav ul{
+        flex-direction: column;
+    }
+
 }
