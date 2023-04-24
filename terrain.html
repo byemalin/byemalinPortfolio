@@ -3,21 +3,25 @@
 <html>
 
 <head>
-    <title>About byemalin</title>
+    <title>Terrain</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/byemalinFavicon.png">
 
     <link rel="stylesheet" href="./styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="./styles/terrainStyle.css" type="text/css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Script tag with a defer element: -->
-    <script src="./scripts/scrollAnimation.js" defer></script>
-    <script src="./scripts/responsiveMenu.js" defer></script>
+    <script src="./scripts/terrainScript.js" defer></script>
+    <script src="./scripts/p5.js" defer></script>
+
+    <!-- <script src="./scripts/responsiveMenu.js" defer></script> -->
+
 </head>
-
-
 
 <body>
 
+    <!-- HEADER -->
     <header class="mainHeader">
         <a href="./home.html">
             <div class="headerLogoContainer">
@@ -28,7 +32,7 @@
         <nav>
             <ul>
                 <li><a href="./home.html">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="./about.html">About</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -41,114 +45,130 @@
         </div>
     </header>
 
-    <!-- Popup Menu -->
-    <section class="popupMenuContainer">
-        <div class="popupMenu">
-            <div class="popupContent">
-                <nav id="columnNav">
-                    <ul>
-                        <li><a href="./home.html"><h2>Home</h2></a></li>
-                        <li><a href="#"><h2>About</h2></a></li>
-                        <li><a href="./contact.html"><h2>Contact</h2></a></li>
-                    </ul>
-                </nav>
-    
-                <nav>
-                    <ul>
-                        <li><a href="https://www.linkedin.com/in/malin-mabika/" target="_blank">Linkedin</a></li>
-                        <li><a href="https://www.instagram.com/byemalin/" target="_blank">Instagram</a></li>
-                        <li><a href="https://github.com/malin888" target="_blank">Github</a></li>
-                    </ul>
-                </nav>
-            </div>
-    
-            <div>
-                <div class="closeIcon">
-                    <svg width="57" height="58" viewBox="0 0 57 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="13.4345" y1="42.4345" x2="41.7188" y2="14.1502" stroke="#0B0C0E" stroke-width="2"/>
-                        <line x1="41.7197" y1="43.8487" x2="13.4354" y2="15.5644" stroke="#0B0C0E" stroke-width="2"/>
+    <main id="terrainMain">
+
+        <!-- LEFT -->
+        <section id="terrainLeft">
+            <div id="terrainTools" class="terrainCard">
+                <div class="terrainTool" id="terrainButton">
+                    <svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.0747 0.744772C7.20053 -0.139582 5.87406 8.26167 6.9795 11.3569C8.08494 14.4522 4.32642 17.1053 6.97948 19.3162C9.63254 21.5271 11.4012 19.3162 14.7176 17.1053C18.0339 14.8944 18.0339 17.7686 22.8978 17.1053C27.7618 16.442 22.8977 4.28212 19.3602 5.38756C15.8228 6.493 12.9488 1.62913 10.0747 0.744772Z" stroke="#0B0C0E" stroke-width="1.30303"/>
+                        <path d="M7.3364 4.00234C4.46225 3.11799 3.13578 11.5192 4.24122 14.6145C5.34666 17.7098 1.58814 20.3629 4.2412 22.5737C6.89426 24.7846 8.66297 22.5737 11.9793 20.3629C15.2956 18.152 15.2956 21.0261 20.1596 20.3629C25.0235 19.6996 20.1594 7.53969 16.622 8.64513C13.0846 9.75057 10.2105 4.88669 7.3364 4.00234Z" stroke="#0B0C0E" stroke-width="1.30303"/>
+                        <path d="M4.73044 7.25966C1.85629 6.37531 0.529821 14.7766 1.63526 17.8718C2.7407 20.9671 -1.01782 23.6202 1.63524 25.8311C4.2883 28.042 6.05701 25.8311 9.37333 23.6202C12.6897 21.4093 12.6897 24.2834 17.5536 23.6202C22.4175 22.9569 17.5534 10.797 14.016 11.9025C10.4786 13.0079 7.60459 8.14402 4.73044 7.25966Z" stroke="#0B0C0E" stroke-width="1.30303"/>
+                    </svg>
+                </div>
+                <div class="terrainTool" id="spiralButton">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1.5062" y="12.8301" width="16.255" height="16.255" rx="0.625191" transform="rotate(-45.4096 1.5062 12.8301)" fill="#F4F7FA" stroke="#0B0C0E" stroke-width="1.25038"/>
+                        <rect x="2.1542" y="8.475" width="16.255" height="16.255" rx="0.625191" transform="rotate(-23.8516 2.1542 8.475)" fill="#F4F7FA" stroke="#0B0C0E" stroke-width="1.25038"/>
+                        <rect x="5.31027" y="21.2773" width="16.255" height="16.255" rx="0.625191" transform="rotate(-93.8545 5.31027 21.2773)" fill="#F4F7FA" stroke="#0B0C0E" stroke-width="1.25038"/>
+                    </svg>
+                </div>
+                <div class="terrainTool" id="wavesButton">
+                    <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.23584 23.9507C4.45288 19.0826 11.3495 19.0826 13.3779 14.6201C15.4063 10.1576 12.1608 6.50644 17.029 4.47804C21.8972 2.44963 23.9256 2.85531 25.1426 0.826904" stroke="#0B0C0E" stroke-width="0.811363" stroke-linecap="round"/>
+                        <path d="M5.26416 23.9507C6.4812 19.0826 13.3778 19.0826 15.4062 14.6201C17.4346 10.1576 14.1892 6.50644 19.0573 4.47804C23.9255 2.44963 25.9539 2.85531 27.171 0.826904" stroke="#0B0C0E" stroke-width="0.811363" stroke-linecap="round"/>
+                        <path d="M1.20654 23.9507C2.42359 19.0826 9.32017 19.0826 11.3486 14.6201C13.377 10.1576 10.1315 6.50644 14.9997 4.47804C19.8679 2.44963 21.8963 2.85531 23.1133 0.826904" stroke="#0B0C0E" stroke-width="0.811363" stroke-linecap="round"/>
+                        <path d="M6.88623 24.762C8.10327 19.8938 14.9999 19.8938 17.0283 15.4314C19.0567 10.9689 15.8112 7.31772 20.6794 5.28932C25.5476 3.26091 27.576 3.66659 28.793 1.63818" stroke="#0B0C0E" stroke-width="0.811363" stroke-linecap="round"/>
+                    </svg>   
+                </div>
+                <div class="terrainTool" id="pencilButton">
+                    <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.16743 19.6907L19.0623 3.78065C19.4955 3.37145 20.082 3.29608 20.3725 3.60423L22.6965 6.06944C22.987 6.37759 22.8742 6.9601 22.441 7.3693L5.54048 23.2714C5.36652 23.4308 5.16433 23.5504 4.95212 23.6053L1.90747 24.3969C1.21183 24.5796 0.595785 23.9224 0.81665 23.2393L1.79272 20.2498C1.86249 20.0447 1.98667 19.8489 2.16178 19.6828L2.16743 19.6907Z" stroke="#0B0C0E" stroke-width="1.37947" stroke-miterlimit="10"/>
+                        <path d="M14.8073 7.78763L19.2875 3.5668C19.5956 3.27629 20.0832 3.28907 20.3737 3.59722L22.6977 6.06243C22.9882 6.37059 22.9755 6.85813 22.6673 7.14864L18.1872 11.3695L14.8141 7.78879L14.8073 7.78763Z" fill="#0B0C0E" stroke="#0B0C0E" stroke-width="1.37947" stroke-miterlimit="10"/>
                     </svg>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-
-    <main class="about">
-        <section class="splitSection">
-            <p id="aboutIntro2">Hello, I'm Malin, a multi-disciplinary designer originally from Lusaka, Zambia, and now based in Paris. I'm currently in my final semester pursuing a bachelors degree in Art, Media, and Technology at Parsons School of Design in Paris, where I've been able to hone my skills in programming and front-end development. With a passion for creating visually stunning, user-friendly designs, I've gained hands-on experience in front-end development, UI/UX design, animation, and graphic design.</p>
-            <div class="left">
-                <div class="imageContainer">
-                    <!-- <img alt="Rotating Globe GIF" src="./assets/img/gifs/oblationCropped.gif"> -->
-                    <canvas id="animation-scrolling"></canvas>
-                </div>
-            </div>
-            <div class="right">
-                <p id="aboutIntro1">Hello, I'm Malin, a multi-disciplinary designer originally from Lusaka, Zambia, and now based in Paris. I'm currently in my final semester pursuing a bachelors degree in Art, Media, and Technology at Parsons School of Design in Paris, where I've been able to hone my skills in programming and front-end development. With a passion for creating visually stunning, user-friendly designs, I've gained hands-on experience in front-end development, UI/UX design, animation, and graphic design.</p>
-                <br>
-                <p>My design philosophy centres around the idea of design as a tool for enhancing the human experience. I believe in creating designs that are not only beautiful but also functional and intuitive. Whether I'm working on a website or an animation, I strive to make every project an opportunity to connect with users on a deeper level.</p>
-                <br>
-                <p>As a creative mind, I enjoy the challenge of pushing boundaries and exploring new possibilities in design. I stay up to date with the latest trends and techniques, and I love experimenting with new technologies and design concepts. With a keen eye for detail and a commitment to excellence, I take pride in delivering high-quality work that exceeds client expectations.</p>
-                <br>
-                <p>I'm currently seeking new opportunities in front-end software development, and I'm excited about the prospect of working with innovative companies and like-minded individuals who share my passion for design. If you're interested in collaborating or learning more about my work, please don't hesitate to get in touch!</p>
-            </div>
+            <div id="terrainColors" class="terrainCard"></div>
         </section>
 
-        <section class="skills">
+        <!-- CENTER -->
+        <section id="terrainCenter" class="terrainCard"></section>
 
-            <h3>Development Skills</h3>
-            <div class="skillIcons">
-                <img title= "Javascript" alt="Javascript Icon" src="./assets/img/icons/logos/development/javascriptLogo.svg">
-                <img title= "HTML" alt="HTML Icon" src="./assets/img/icons/logos/development/HTMLLogo.svg">
-                <img title= "CSS" alt="CSS Icon" src="./assets/img/icons/logos/development/CSSLogo.svg">
-                <img title= "React" alt="React Icon" src="./assets/img/icons/logos/development/reactLogo.svg">
-                <img title= "Github" alt="Github Icon" src="./assets/img/icons/logos/development/githubLogo.svg">
-                <img title= "Git" alt="Git Icon" src="./assets/img/icons/logos/development/gitLogo.svg">
-                <img title= "NodeJS" alt="NodeJS Icon" src="./assets/img/icons/logos/development/nodejsLogo.svg">
-                
-            </div>
-            <h3>Proficient Softwares</h3>
-            <div class="skillIcons">
-                <img title= "Figma" alt="Figma Icon" src="./assets/img/icons/logos/softwares/figmaLogo.svg">
-                <img title= "Blender" alt="Blender Icon" src="./assets/img/icons/logos/softwares/blenderLogo.svg">
-                <img title= "Illustrator" alt="Illustrator Icon" src="./assets/img/icons/logos/softwares/illustratorLogo.svg">
-                <img title= "Photoshop" alt="Photoshop Icon" src="./assets/img/icons/logos/softwares/photoshopLogo.svg">
-                <img title= "Premiere Pro" alt="Premiere Pro Icon" src="./assets/img/icons/logos/softwares/premiereproLogo.svg">
-                <img title= "After Effects" alt="After Effects Icon" src="./assets/img/icons/logos/softwares/aftereffectsLogo.svg">
-                <!-- <img title= "Visual Studio Code" alt="Visual Studio Code Icon" src="./assets/img/icons/logos/softwares/vscodeLogo.svg"> -->
+        <!-- RIGHT -->
+        <section id="terrainRight">
+
+            <div id="dynamicControls" class="terrainCard">
+
+                <label for="strokeWeightRange">Stroke Weight</label>
+                <input type="number" id="strokeWeightRange" name="strokeWeightRange" min="0.1" max="50" step="0.1">
+
+                <label for="waveRadiusRange">Wave Radius</label>
+                <input type="range" id="waveRadiusRange" name="waveRadiusRange" min="1" max="1200">
+
+                <label for="waveStrengthRange">Wave Strength</label>
+                <input type="range" id="waveStrengthRange" name="waveStrengthRange" min="100" max="1000">
+
+                <label for="terrainSpeedRange">Speed</label>
+                <input type="range" id="terrainSpeedRange" name="terrainSpeedRange" min="1" max="5">
             </div>
 
-        </section>
-    </main>
 
-
-    <footer>
-        <section class="footerMain">
-            <div>
-                <h2> Have something in mind?</h2>
-                <div class="inlineTextIMG">
-                    <div class="profileImageContainer">
-                        <img alt="profile picture" src="./assets/img/angledPortrait.jpg">
+            <div id="toggleSwitches" class="terrainCard">
+                <section id="fillToggles">
+                    <div>
+                        <label>Fill</label>
+                        <label class="switch">
+                            <input type="checkbox" id="fillSwitch" name="fillSwitch">
+                            <span class="slider"></span>
+                        </label>
                     </div>
-                    <h2>Let's build it together</h2>
+
+                    <div>
+                        <label>Random</label>
+                        <label class="switch">
+                            <input type="checkbox" id="randomFillSwitch" name="randomFillSwitch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <section id="strokeToggles">
+                    <div>
+                        <label>Stroke</label>
+                        <label class="switch">
+                            <input type="checkbox" id="strokeSwitch" name="strokeSwitch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>Random</label>
+                        <label class="switch">
+                            <input type="checkbox" id="randomStrokeSwitch" name="randomStrokeSwitch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </section>
+            </div>
+
+            <div id="artboardSize" class="terrainCard">
+                <label>Artboard Size</label>
+                <section>
+                    <div>
+                        <label for="artboardHeight">Height (px)</label>
+                        <input type="number" id="artboardHeight" name="artboardHeight" placeholder="Height">
+                    </div>
+                    <div>
+                        <label for="artboardWidth">Width (px)</label>
+                        <input type="number" id="artboardWidth" name="artboardWidth" placeholder="Width">
+                    </div>
+                </section>
+                <button id="resizeOK">OK</button>
+            </div>
+
+            <div id="documentControls" class="terrainCard">
+                <button id="randomBG">Random BG</button>
+                <button id="transparentBG">Transparent BG</button>
+                <div id="downloadButtons">
+                    <button id="downloadPNG">PNG</button>
+                    <button id="downloadSVG">SVG</button>
                 </div>
             </div>
-          <a href="./contact.html"><button class="cta">Get in touch</button></a>
         </section>
 
-        <section class="footerLinks">
-            <p class="smallText">&#128104;&#127997;&#8205;&#128187; Built from scratch with &#128150;</p>
-
-            <nav>
-                <ul>
-                    <li><a href="https://www.linkedin.com/in/malin-mabika/" target="_blank">Linkedin</a></li>
-                    <li><a href="https://www.instagram.com/byemalin/" target="_blank">Instagram</a></li>
-                    <li><a href="https://github.com/malin888" target="_blank">Github</a></li>
-                </ul>
-            </nav>
-        </section>
-    </footer>
+    </main>
+    
 </body>
 
 </html>

@@ -397,6 +397,9 @@ header nav li a{
     top: 20rem;
     right:0px;
 
+
+    
+
     transition: all 400ms ease-in 200ms;
 }
 
@@ -498,7 +501,7 @@ header nav li a{
     display: none;
 }
 
-canvas {
+.about canvas {
     max-width: 100%;
 }
 
@@ -529,10 +532,10 @@ canvas {
 
     flex-wrap: wrap;
 
-    /* margin: 100px */
+    margin-bottom: 2rem;
 }
 .skillIcons img{
-    height: 100%;
+    max-height: 100%;
     margin: 1rem 0;
 }
 

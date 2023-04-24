@@ -1,0 +1,340 @@
+/* *{
+    border: solid red 1px;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+main{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    height: 810px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+
+#terrainMain button{
+    height: 40px;
+    padding: 0 0.75rem;
+
+    border: 1px solid #79747E;
+    border-radius: 100px;
+
+    /* color:#3F68D1; */
+    background-color: #F4F7FA;
+}
+
+#terrainMain button:hover{
+    background-color: #C8D4F3 !important;
+    cursor: pointer;
+}
+
+#terrainMain button:active:hover{
+    background-color: #3F68D1 !important;
+    color: #F4F7FA;
+    border:none;
+}
+
+
+
+
+.terrainCard{
+    background: #F7F7F7;
+    border: 1px solid #CAC4D0;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+
+
+/* LEFT */
+
+
+#terrainLeft{
+    height: 90%;
+    width:10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#terrainTools{
+    height: 365px;
+    width: 68px;
+}
+
+.terrainTool{
+    width: 40px;
+    height: 40px;
+
+    background: #F4F7FA;
+    box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 500ms;
+}
+
+.terrainTool:hover{
+    background-color: #C8D4F3 !important;
+    cursor: pointer;
+}
+
+
+#terrainColors{
+    height:285px;
+    width: 78.5px;
+}
+
+
+.terrainColor{
+    width: 45.69px;
+    height: 45.69px;
+
+
+    background: #F4F7FA;
+    box-shadow: 0px 4.68657px 9.37313px 3.51493px rgba(0, 0, 0, 0.15), 0px 1.17164px 3.51493px rgba(0, 0, 0, 0.3);
+    border-radius: 14.0597px;
+    border:none;
+
+    padding: 5px;
+}
+
+.terrainColor:hover{
+    background-color: #C8D4F3 !important;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+/* CENTER */
+
+
+#terrainCenter{
+    height: 90%;
+    width:70%;
+}
+
+canvas{
+    border: 1px solid #CAC4D0;
+    max-width: 90%;
+    height:auto;
+}
+
+
+
+
+/* RIGHT */
+
+
+#terrainRight{
+    height: 100%;
+    width:15%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+/* Dynamic Controls */
+
+#dynamicControls{
+    width: 200px;
+    height: 270px;
+
+    overflow: scroll;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+    width: 164px;
+    height: 4px;
+    border-radius: 4px;
+
+    background:#E7E0EC;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background: #3F68D1;
+    border-radius:50% ;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover{
+    background: #213871;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+
+#toggleSwitches{
+    /* display: flex;
+    justify-content: space-between; */
+    flex-direction: row;
+    width: 200px;
+    height: 175px;
+}
+
+#toggleSwitches section{
+    width: 71px;
+    height: 155px;
+
+    border: 1px solid #C7D0D9;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#toggleSwitches section div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 32px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #E7E0EC;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #3F68D1;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #3F68D1;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+
+
+
+
+
+/* Artboard Size */
+
+#artboardSize{
+    width:200px;
+    height: 130px;
+}
+
+#artboardSize section{
+    display: flex;
+    justify-content: space-between;
+
+    width: 80%;
+}
+
+#artboardSize input{
+    width: 69px;
+    height: 25px;
+
+    border: 1px solid #79747E;
+    border-radius: 4px;
+}
+
+#artboardSize button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 21px;
+}
+
+
+
+#documentControls{
+    width: 200px;
+    height: 215px;
+}
+
+#downloadButtons{
+    display:flex;
+    justify-content: space-between;
+
+    width:65%;
+}
+
+
+

@@ -14,6 +14,10 @@ function projectHover(){
         currentProject.addEventListener('mousemove', ScreenshotMove )
 
 
+        // Perhaps these don't need to be seperatrd into seperate functions
+        // I guess I could use an interior if statement.
+        // I think that mean that mouseover and mouseout just trigger the same function
+
         function ScreenshotDisplay(){
             currentSS.style.display='flex';
 
