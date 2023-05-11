@@ -1,12 +1,15 @@
+//import { appendCanvasToFrame, appendColorPickers } from "./terrainUtilities/appendToDOM.js";
+
+
 //setting some global variables:
 let angle = 0.0;
 
-let slider;
-
-let waveArray = [];
 
 let radialLoop = 600;
 
+
+
+let terrainShapes = [];
 
 
 
@@ -14,28 +17,28 @@ let radialLoop = 600;
 //DYNAMIC CONTROLS DOM
 
 //fill and stroke toggles
-fillSwitch = document.getElementById('fillSwitch');
-randomFillSwitch = document.getElementById('randomFillSwitch');
+const fillSwitch = document.getElementById('fillSwitch');
+const randomFillSwitch = document.getElementById('randomFillSwitch');
 
-strokeSwitch = document.getElementById('strokeSwitch');
-randomStrokeSwitch = document.getElementById('randomStrokeSwitch');
+const strokeSwitch = document.getElementById('strokeSwitch');
+const randomStrokeSwitch = document.getElementById('randomStrokeSwitch');
 
 strokeSwitch.checked = true; //starting with stroke on
 
 
 //stroke weight
-strokeWeightRange = document.getElementById('strokeWeightRange');
+const strokeWeightRange = document.getElementById('strokeWeightRange');
 strokeWeightRange.value = 1;
 
 //Terrain Controls
 //wave radius
-waveRadiusRange = document.getElementById('waveRadiusRange');
+const waveRadiusRange = document.getElementById('waveRadiusRange');
 waveRadiusRange.value = 600;
 //waveStrength
-waveStrengthRange = document.getElementById('waveStrengthRange');
+const waveStrengthRange = document.getElementById('waveStrengthRange');
 waveStrengthRange.value = 200;
 //waveSpeed
-terrainSpeedRange = document.getElementById('terrainSpeedRange');
+const terrainSpeedRange = document.getElementById('terrainSpeedRange');
 terrainSpeedRange.value = 1;
 
 
@@ -65,9 +68,9 @@ function setup() {
 
   //t for time for loops in draw.value incremented in draw
   t = 0;
+  terrainSpeed = 0;
   //for random gradual color change over time
   colorIncrement = 0;
-
   
 }
 
@@ -112,18 +115,16 @@ function draw() {
 
   //TERRAIN TOOL
 
-  /*
-  There is an expansion to be made with the terrain tool. 
-  I think each loop of the shape should be stored in an array
-  This can then be converted and exported as an svg
-  */
-
+  
+ 
   if (terrain.toggleState == true && mouseIsPressed == true && mouseInCanvas) {
     radialLoop = waveRadiusRange.value;
     waveStrength = waveStrengthRange.value;
     terrainSpeed = terrainSpeedRange.value;
     //move to mouse location
     translate(mouseX, mouseY);
+
+    let currentTerrainShape = [];
 
     //shape funtion:
     beginShape();
@@ -136,13 +137,21 @@ function draw() {
       var y = rad * sin(ang);
 
       
+      // Add the current point to the shape
       curveVertex(x, y);
+      currentTerrainShape.push([x, y]); // Store the current point in the currentShape array
+
     }
     endShape(CLOSE);
 
-    //incrementing time and colorIncrement
-    // console.log(terrainSpeed); For some reason when I add this it breaks no idea why
-    t += 1;
+    // Add the current shape to the shapes array
+    terrainShapes.push(currentTerrainShape);
+
+    //incrementing time
+
+    t += Number(terrainSpeed); //terrain speed value seems to start as a string not sure why. Used number here to convert it into a number.
+
+    
 
 
     // keyPressed();
@@ -236,9 +245,9 @@ function keyPressed(){
 
 
 
-//WORKING WITH THE DOM:
+// //WORKING WITH THE DOM:
 
-//these appending functions could possibly be transferred to a seperate file as modules to import
+// //these appending functions could possibly be transferred to a seperate file as modules to import
 
 function appendCanvasToFrame(){
   const canvasFrame = document.getElementById('terrainCenter');
@@ -293,27 +302,82 @@ function appendColorPickers(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Button Event Listeners:
+
+
+//tools
+
+const terrainButton = document.getElementById('terrainButton')
+terrainButton.onclick = terrainFile;
+
+const spiralButton = document.getElementById('spiralButton')
+spiralButton.onclick = spiralFile;
+
+const wavesButton = document.getElementById('wavesButton')
+wavesButton.onclick = wavesFile;
+
+const pencilButton = document.getElementById('pencilButton')
+pencilButton.onclick = pencilFile;
+
+
+//save and clear:
+const downloadPNG = document.getElementById('downloadPNG')
+downloadPNG.onclick = savePNG;
+
+const downloadSVG = document.getElementById('downloadSVG')
+downloadSVG.onclick = terrainSaveSvg;
+
+const transparentBG = document.getElementById('transparentBG')
+transparentBG.onclick = clearFile;
+
+
+
+//bg
+const randomBG = document.getElementById('randomBG')
+randomBG.onclick = randomBGFile;
+
+//resize canvas
+const resizeOK = document.getElementById('resizeOK')
+resizeOK.onclick = resizeArtboard;
+
+
+
+//FUNCTIONS FOR BUTTONS:
+
 //TOGGLE TOOLS
 
 //objects for each tool with state and button node
 const terrain = {
-    toggleState: true,
-    buttonNode: terrainButton
+  toggleState: true,
+  buttonNode: terrainButton
 };
 
 const spiral = {
-    toggleState: false,
-    buttonNode: spiralButton
+  toggleState: false,
+  buttonNode: spiralButton
 };
 
 const waves = {
-    toggleState: false,
-    buttonNode: wavesButton
+  toggleState: false,
+  buttonNode: wavesButton
 }
 
 const pencil = {
-    toggleState: false,
-    buttonNode: pencilButton
+  toggleState: false,
+  buttonNode: pencilButton
 }
 
 //array of all tool objects
@@ -333,52 +397,6 @@ function toggleToolState(tool){
 
 //setting the starting tool to terrain
 toggleToolState(terrain);
-
-
-
-
-
-
-
-
-
-
-//Button Event Listeners:
-
-
-//tools
-
-terrainButton = document.getElementById('terrainButton')
-terrainButton.onclick = terrainFile;
-
-spiralButton = document.getElementById('spiralButton')
-spiralButton.onclick = spiralFile;
-
-wavesButton = document.getElementById('wavesButton')
-wavesButton.onclick = wavesFile;
-
-pencilButton = document.getElementById('pencilButton')
-pencilButton.onclick = pencilFile;
-
-
-//save and clear:
-downloadPNG = document.getElementById('downloadPNG')
-downloadPNG.onclick = saveToFile;
-
-transparentBG = document.getElementById('transparentBG')
-transparentBG.onclick = clearFile;
-
-//bg
-randomBG = document.getElementById('randomBG')
-randomBG.onclick = randomBGFile;
-
-//resize canvas
-resizeOK = document.getElementById('resizeOK')
-resizeOK.onclick = resizeArtboard;
-
-
-
-//FUNCTIONS FOR BUTTONS:
 
 //tools:
 
@@ -400,16 +418,18 @@ function pencilFile() {
 
 //save, clear, background:
 
-function saveToFile() {
+function savePNG() {
     saveCanvas('Terrain_byemalin', 'png')
 }
   
 function clearFile() {
     clear();
+    terrainShapes = [];
 }
 
 function randomBGFile() {
-background(color(random(255), random(255), random(255)));
+  background(color(random(255), random(255), random(255)));
+  terrainShapes = [];
 }
 
 //resize artboard
@@ -420,3 +440,27 @@ function resizeArtboard(){
 
     resizeCanvas(newWidth, newHeight);
 }
+
+
+//terrain save as SVG
+
+function terrainSaveSvg() {
+  console.log('Terrain Save Fired');
+  // Create a new graphics object and draw each shape in the shapes array
+  let g = createGraphics(width, height, SVG);
+  g.background(255);
+  g.strokeWeight(0.5);
+  g.noFill();
+  for (let i = 0; i < terrainShapes.length; i++) {
+    let shape = terrainShapes[i];
+    g.beginShape();
+    for (let j = 0; j < shape.length; j++) {
+      g.curveVertex(shape[j][0], shape[j][1]);
+    }
+    g.endShape(CLOSE);
+  }
+  
+  // Use the save() function to download the graphics object as an SVG file
+  save(g, 'byemalin.svg');
+}
+
