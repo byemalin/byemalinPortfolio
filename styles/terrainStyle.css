@@ -175,7 +175,7 @@ canvas{
 
     /* display:flex; */
 
-    overflow: scroll;
+    /* overflow: scroll; */
     padding:0;
 
     justify-content: center;
