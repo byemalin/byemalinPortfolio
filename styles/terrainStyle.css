@@ -1,6 +1,12 @@
-/* *{
-    border: solid red 1px;
-} */
+*{
+    /* border: solid red 1px; */
+    font-family: 'Roboto', sans-serif;
+}
+
+html{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
@@ -98,7 +104,7 @@ main{
 
 
 #terrainColors{
-    height:285px;
+    height:250px;
     width: 78.5px;
 }
 
@@ -150,7 +156,7 @@ canvas{
 
 
 #terrainRight{
-    height: 100%;
+    height: 90%;
     width:15%;
 
     display: flex;
@@ -167,8 +173,30 @@ canvas{
     width: 200px;
     height: 270px;
 
+    /* display:flex; */
+
     overflow: scroll;
+    padding:0;
+
+    justify-content: center;
 }
+
+#strokeWeightDiv{
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+}
+
+/* Terrain tool specific controls */
+#terrainControls{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    height:60%;
+}
+
+/* Sliders and stuff */
 
 input[type=range]{
     -webkit-appearance: none;
@@ -200,10 +228,8 @@ input[type=range]::-webkit-slider-runnable-track  {
     background: transparent;
   }
 
-
+/* toggle switches */
 #toggleSwitches{
-    /* display: flex;
-    justify-content: space-between; */
     flex-direction: row;
     width: 200px;
     height: 175px;

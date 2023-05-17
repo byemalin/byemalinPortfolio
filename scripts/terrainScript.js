@@ -28,18 +28,18 @@ strokeSwitch.checked = true; //starting with stroke on
 
 //stroke weight
 const strokeWeightRange = document.getElementById('strokeWeightRange');
-strokeWeightRange.value = 1;
+strokeWeightRange.value = 0.5;
 
 //Terrain Controls
 //wave radius
 const waveRadiusRange = document.getElementById('waveRadiusRange');
-waveRadiusRange.value = 600;
+waveRadiusRange.value = 400;
 //waveStrength
 const waveStrengthRange = document.getElementById('waveStrengthRange');
 waveStrengthRange.value = 200;
 //waveSpeed
 const terrainSpeedRange = document.getElementById('terrainSpeedRange');
-terrainSpeedRange.value = 1;
+terrainSpeedRange.value = 2;
 
 
 function setup() {
@@ -61,7 +61,9 @@ function setup() {
   fillColorPicker = createColorPicker("#FFD25A");
   strokeColorPicker = createColorPicker("#191919");
   
-  BGColorPicker = createColorPicker("#FFFFFF");
+  //BGColorPicker = createColorPicker("#FFFFFF");
+  
+
 
   appendColorPickers();
 
@@ -77,6 +79,7 @@ function setup() {
 
 
 function draw() {
+
     
     keyPressed(); //calling keyPressed within draw so that it continually loops
 
@@ -132,6 +135,7 @@ function draw() {
     //main loop for terrain
     for (var i = 0; i < waveStrength; i++) {
       var ang = map(i, 0, waveStrength, 0, TWO_PI);
+      //var ang = map(i, 0, 100, 0, TWO_PI);
       var rad = radialLoop * noise(i * 0.01, t * 0.005); //radius
       var x = rad * cos(ang);
       var y = rad * sin(ang);
@@ -349,9 +353,15 @@ transparentBG.onclick = clearFile;
 const randomBG = document.getElementById('randomBG')
 randomBG.onclick = randomBGFile;
 
+// const changeBG = document.getElementById('colorPicker2');
+// console.log(changeBG);
+
+// changeBG.onchange = changeBGFile;
+
+
 //resize canvas
 const resizeOK = document.getElementById('resizeOK')
-resizeOK.onclick = resizeArtboard;
+//resizeOK.onclick = resizeArtboard;
 
 
 
@@ -393,6 +403,9 @@ function toggleToolState(tool){
     //set chosen tool to true and active color
     tool['toggleState'] = true;
     tool['buttonNode'].style.backgroundColor='#3F68D1';
+
+    //to be adjusted to better incorporate other tools:
+    
 }
 
 //setting the starting tool to terrain
@@ -432,7 +445,12 @@ function randomBGFile() {
   terrainShapes = [];
 }
 
+function changeBGFile(e) {
+  console.log(e.target.value);
+}
+
 //resize artboard
+//to be added later as now it messes with stretching
 
 function resizeArtboard(){
     const newHeight = document.getElementById('artboardHeight').value;
