@@ -46,7 +46,7 @@ terrainSpeedRange.value = 2;
 // Declare variables for screensaver feature
 let isScreensaverActive = false;
 let activityTimeout;
-const inactivityDuration = 60 * 1000; // 2 minutes in milliseconds
+const inactivityDuration = 20 * 1000; // 2 minutes in milliseconds
 
 function resetActivityTimeout() {
   clearTimeout(activityTimeout);
@@ -294,7 +294,6 @@ function draw() {
         dynamicRadius = 500;
       }
 
-      console.log(dynamicRadius);
 
       // Increment time
       t += 1;
