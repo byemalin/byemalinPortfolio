@@ -46,7 +46,7 @@ terrainSpeedRange.value = 2;
 // Declare variables for screensaver feature
 let isScreensaverActive = false;
 let activityTimeout;
-const inactivityDuration = 5 * 1000; // in milliseconds
+const inactivityDuration = 20 * 1000; // in milliseconds
 
 function resetActivityTimeout() {
   clearTimeout(activityTimeout);
