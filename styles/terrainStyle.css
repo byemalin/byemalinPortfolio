@@ -23,6 +23,10 @@ main{
     line-height: 20px;
 }
 
+#headerLink{
+    color: #79747E;
+}
+
 
 #terrainMain button{
     height: 40px;

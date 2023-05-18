@@ -46,7 +46,7 @@ terrainSpeedRange.value = 2;
 // Declare variables for screensaver feature
 let isScreensaverActive = false;
 let activityTimeout;
-const inactivityDuration = 20 * 1000; // 2 minutes in milliseconds
+const inactivityDuration = 5 * 1000; // in milliseconds
 
 function resetActivityTimeout() {
   clearTimeout(activityTimeout);
@@ -82,6 +82,9 @@ function handleUserInteraction() {
 
 
 
+document.addEventListener('mousemove', handleUserInteraction);
+document.addEventListener('mousedown', handleUserInteraction);
+document.addEventListener('keydown', handleUserInteraction);
 
 
 
@@ -121,9 +124,9 @@ function setup() {
 
 
   // Attach event listeners for user interactions for screensaver
-  //canvasFrame.addEventListener('mousemove', handleUserInteraction);
-  canvasFrame.addEventListener('mousedown', handleUserInteraction);
-  canvasFrame.addEventListener('keydown', handleUserInteraction);
+  // canvasFrame.addEventListener('mousemove', handleUserInteraction);
+  // canvasFrame.addEventListener('mousedown', handleUserInteraction);
+  // canvasFrame.addEventListener('keydown', handleUserInteraction);
   
   // radius for screensaver
   dynamicRadius = 500;
@@ -550,3 +553,13 @@ function terrainSaveSvg() {
 
 // Call resetActivityTimeout() at the beginning to start tracking user activity for screensaver
 resetActivityTimeout();
+
+
+
+const terrainControls = document.getElementById("terrainControls");
+
+if (terrain.toggleState == true){
+  console.log('ON');
+} else {
+  console.log('OFF');
+}
