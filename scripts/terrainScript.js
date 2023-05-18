@@ -1,13 +1,10 @@
-//import { appendCanvasToFrame, appendColorPickers } from "./terrainUtilities/appendToDOM.js";
+
 
 
 //setting some global variables:
 let angle = 0.0;
 
-
 let radialLoop = 600;
-
-
 
 let terrainShapes = [];
 
@@ -42,6 +39,54 @@ const terrainSpeedRange = document.getElementById('terrainSpeedRange');
 terrainSpeedRange.value = 2;
 
 
+
+
+// SCREENSAVER
+
+// Declare variables for screensaver feature
+let isScreensaverActive = false;
+let activityTimeout;
+const inactivityDuration = 60 * 1000; // 2 minutes in milliseconds
+
+function resetActivityTimeout() {
+  clearTimeout(activityTimeout);
+  activityTimeout = setTimeout(startScreensaver, inactivityDuration);
+}
+
+function startScreensaver() {
+  isScreensaverActive = true;
+  clear();
+  // Center the drawing
+  translate(width / 2, height / 2);
+  // Start the terrain tool automatically
+  toggleToolState(terrain);
+}
+
+function stopScreensaver() {
+  isScreensaverActive = false;
+  clear();
+  // Reset the canvas
+  background(color('#FFFFFF'));
+  terrainShapes = [];
+  // Reset the activity timeout
+  resetActivityTimeout();
+}
+
+function handleUserInteraction() {
+  if (isScreensaverActive) {
+    stopScreensaver();
+  } else {
+    resetActivityTimeout();
+  }
+}
+
+
+
+
+
+
+
+
 function setup() {
 
     //Create Canvas and Set BG Colour
@@ -73,7 +118,17 @@ function setup() {
   terrainSpeed = 0;
   //for random gradual color change over time
   colorIncrement = 0;
+
+
+  // Attach event listeners for user interactions for screensaver
+  //canvasFrame.addEventListener('mousemove', handleUserInteraction);
+  canvasFrame.addEventListener('mousedown', handleUserInteraction);
+  canvasFrame.addEventListener('keydown', handleUserInteraction);
   
+  // radius for screensaver
+  dynamicRadius = 500;
+  textSize(width / 10);
+  textAlign(CENTER, CENTER);
 }
 
 
@@ -81,155 +136,172 @@ function setup() {
 function draw() {
 
     
-    keyPressed(); //calling keyPressed within draw so that it continually loops
+  if (!isScreensaverActive){  keyPressed(); //calling keyPressed within draw so that it continually loops
 
-  //background(color(BGColorPicker.color()));
 
-  strokeWeight(strokeWeightRange.value);
+    strokeWeight(strokeWeightRange.value);
 
-  //setting stroke and fill
-  if (randomFillSwitch.checked) {
-    var r = 255 * noise(colorIncrement + 10);
-    var g = 255 * noise(colorIncrement + 15);
-    var b = 255 * noise(colorIncrement + 20);
-    fill(r, g, b);
-  } else if(fillSwitch.checked){
-    fill(fillColorPicker.color());
-  } else {
-    noFill();
-  }
+    //setting stroke and fill
+    if (randomFillSwitch.checked) {
+      var r = 255 * noise(colorIncrement + 10);
+      var g = 255 * noise(colorIncrement + 15);
+      var b = 255 * noise(colorIncrement + 20);
+      fill(r, g, b);
+    } else if(fillSwitch.checked){
+      fill(fillColorPicker.color());
+    } else {
+      noFill();
+    }
 
-  if (randomStrokeSwitch.checked) {
-    var r = 255 * noise(colorIncrement + 20);
-    var g = 255 * noise(colorIncrement + 15);
-    var b = 255 * noise(colorIncrement + 10);
-    stroke(r, g, b);
-  } else if(strokeSwitch.checked){
-    stroke(strokeColorPicker.color());
-  } else {
-    noStroke();
-  }
+    if (randomStrokeSwitch.checked) {
+      var r = 255 * noise(colorIncrement + 20);
+      var g = 255 * noise(colorIncrement + 15);
+      var b = 255 * noise(colorIncrement + 10);
+      stroke(r, g, b);
+    } else if(strokeSwitch.checked){
+      stroke(strokeColorPicker.color());
+    } else {
+      noStroke();
+    }
+    
+    
+
+
+    let mouseInCanvas = mouseX > 0 && mouseX < width;
+
+
+    //TERRAIN TOOL
+
+    
   
-  
+    if (terrain.toggleState == true && mouseIsPressed == true && mouseInCanvas) {
+      radialLoop = waveRadiusRange.value;
+      waveStrength = waveStrengthRange.value;
+      terrainSpeed = terrainSpeedRange.value;
+      //move to mouse location
+      translate(mouseX, mouseY);
 
+      let currentTerrainShape = [];
 
-  let mouseInCanvas = mouseX > 0 && mouseX < width;
+      //shape funtion:
+      beginShape();
 
+      //main loop for terrain
+      for (var i = 0; i < waveStrength; i++) {
+        var ang = map(i, 0, waveStrength, 0, TWO_PI);
+        //var ang = map(i, 0, 100, 0, TWO_PI);
+        var rad = radialLoop * noise(i * 0.01, t * 0.005); //radius
+        var x = rad * cos(ang);
+        var y = rad * sin(ang);
 
-  //TERRAIN TOOL
+        
+        // Add the current point to the shape
+        curveVertex(x, y);
+        currentTerrainShape.push([x, y]); // Store the current point in the currentShape array
 
-  
- 
-  if (terrain.toggleState == true && mouseIsPressed == true && mouseInCanvas) {
-    radialLoop = waveRadiusRange.value;
-    waveStrength = waveStrengthRange.value;
-    terrainSpeed = terrainSpeedRange.value;
-    //move to mouse location
-    translate(mouseX, mouseY);
+      }
+      endShape(CLOSE);
 
-    let currentTerrainShape = [];
+      // Add the current shape to the shapes array
+      terrainShapes.push(currentTerrainShape);
 
-    //shape funtion:
-    beginShape();
+      //incrementing time
 
-    //main loop for terrain
-    for (var i = 0; i < waveStrength; i++) {
-      var ang = map(i, 0, waveStrength, 0, TWO_PI);
-      //var ang = map(i, 0, 100, 0, TWO_PI);
-      var rad = radialLoop * noise(i * 0.01, t * 0.005); //radius
-      var x = rad * cos(ang);
-      var y = rad * sin(ang);
+      t += Number(terrainSpeed); //terrain speed value seems to start as a string not sure why. Used number here to convert it into a number.
 
       
-      // Add the current point to the shape
-      curveVertex(x, y);
-      currentTerrainShape.push([x, y]); // Store the current point in the currentShape array
 
     }
-    endShape(CLOSE);
 
-    // Add the current shape to the shapes array
-    terrainShapes.push(currentTerrainShape);
-
-    //incrementing time
-
-    t += Number(terrainSpeed); //terrain speed value seems to start as a string not sure why. Used number here to convert it into a number.
 
     
 
+    //SPIRAL TOOL
 
-    // keyPressed();
+    if (spiral.toggleState == true && mouseIsPressed && mouseInCanvas) {
 
+      let slider_val = 50;
+
+      //move drawing starting point to mouse
+      translate(mouseX, mouseY);
+      rotate(angle); //rotate each loop of the draw function
+
+      rect(-1 * slider_val, -1 * slider_val, slider_val * 2, slider_val * 2);
+      angle += 0.1;
+
+    }
+
+
+
+    //WAVES TOOL
+    if (waves.toggleState == true && mouseIsPressed && mouseInCanvas) {
+
+      translate(mouseX-width/2, mouseY-height/2)
+
+      
+
+      var x1 = width * noise(t + 15);
+      var x2 = width * noise(t + 25);
+      var x3 = width * noise(t + 35);
+      var x4 = width * noise(t + 45);
+      var y1 = height * noise(t + 55);
+      var y2 = height * noise(t + 65);
+      var y3 = height * noise(t + 75);
+      var y4 = height * noise(t + 85);
+
+      bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+
+      t += 0.005;
+    }
+
+    //PENCIL TOOL
+    if (pencil.toggleState == true && mouseIsPressed == true && mouseInCanvas) {
+      stroke(strokeColorPicker.color()); 
+      line(mouseX, mouseY, pmouseX, pmouseY);
+    }
+
+    colorIncrement += 0.001 //used at top of draw for gradual color change
+  } else{
+      // SCREENSAVER LOGIC
+      // Additional logic for screensaver mode
+      stroke(0);
+      noFill();
+
+      translate(width/2, height/2);
+
+      text('TRY ME!', 0, 0);
+
+      // Shape function:
+      beginShape();
+
+      // Main loop for terrain
+      for (let i = 0; i < 200; i++) {
+        const ang = map(i, 0, 200, 0, TWO_PI);
+        const rad = dynamicRadius * noise(i * 0.01, t * 0.005); // Radius
+        const x = rad * cos(ang);
+        const y = rad * sin(ang);
+
+        // Add the current point to the shape
+        curveVertex(x, y);
+      }
+
+      endShape(CLOSE);
+
+      if (dynamicRadius > 10){
+        dynamicRadius -= 3;
+      } else{
+        clear();
+        dynamicRadius = 500;
+      }
+
+      console.log(dynamicRadius);
+
+      // Increment time
+      t += 1;
   }
-
-
-  
-
-  //SPIRAL TOOL
-
-  if (spiral.toggleState == true && mouseIsPressed && mouseInCanvas) {
-
-    //set slider value to local variable
-    // let slider_val = slider.value();
-
-    //this is to be repalaced with actual slider values
-    let slider_val = 50;
-
-    //move drawing starting point to mouse
-    translate(mouseX, mouseY);
-    rotate(angle); //rotate each loop of the draw function
-
-    rect(-1 * slider_val, -1 * slider_val, slider_val * 2, slider_val * 2);
-    angle += 0.1;
-
-  }
-
-
-
-  //WAVES TOOL
-  if (waves.toggleState == true && mouseIsPressed && mouseInCanvas) {
-
-    translate(mouseX-width/2, mouseY-height/2)
-
-    
-
-    var x1 = width * noise(t + 15);
-    var x2 = width * noise(t + 25);
-    var x3 = width * noise(t + 35);
-    var x4 = width * noise(t + 45);
-    var y1 = height * noise(t + 55);
-    var y2 = height * noise(t + 65);
-    var y3 = height * noise(t + 75);
-    var y4 = height * noise(t + 85);
-
-
-    // waveArray.push([x1, y1, x2, y2, x3, y3, x4, y4]);
-
-    // for(let i = 0; i < waveArray.length; i++){
-    //   bezier(
-    //     waveArray[i][0],
-    //     waveArray[i][1],
-    //     waveArray[i][2],
-    //     waveArray[i][3],
-    //     waveArray[i][4],
-    //     waveArray[i][5],
-    //     waveArray[i][6],
-    //     waveArray[i][7], )
-    // }
-
-    bezier(x1, y1, x2, y2, x3, y3, x4, y4);
-
-    t += 0.005;
-  }
-
-  //PENCIL TOOL
-  if (pencil.toggleState == true && mouseIsPressed == true && mouseInCanvas) {
-    stroke(strokeColorPicker.color()); 
-    line(mouseX, mouseY, pmouseX, pmouseY);
-  }
-
-  colorIncrement += 0.001 //used at top of draw for gradual color change
 }//end of draw function
+
+
 
 
 
@@ -251,7 +323,6 @@ function keyPressed(){
 
 // //WORKING WITH THE DOM:
 
-// //these appending functions could possibly be transferred to a seperate file as modules to import
 
 function appendCanvasToFrame(){
   const canvasFrame = document.getElementById('terrainCenter');
@@ -353,10 +424,6 @@ transparentBG.onclick = clearFile;
 const randomBG = document.getElementById('randomBG')
 randomBG.onclick = randomBGFile;
 
-// const changeBG = document.getElementById('colorPicker2');
-// console.log(changeBG);
-
-// changeBG.onchange = changeBGFile;
 
 
 //resize canvas
@@ -404,8 +471,8 @@ function toggleToolState(tool){
     tool['toggleState'] = true;
     tool['buttonNode'].style.backgroundColor='#3F68D1';
 
-    //to be adjusted to better incorporate other tools:
-    
+    //to be adjusted to better incorporate other tools
+
 }
 
 //setting the starting tool to terrain
@@ -450,7 +517,6 @@ function changeBGFile(e) {
 }
 
 //resize artboard
-//to be added later as now it messes with stretching
 
 function resizeArtboard(){
     const newHeight = document.getElementById('artboardHeight').value;
@@ -482,3 +548,6 @@ function terrainSaveSvg() {
   save(g, 'byemalin.svg');
 }
 
+
+// Call resetActivityTimeout() at the beginning to start tracking user activity for screensaver
+resetActivityTimeout();
